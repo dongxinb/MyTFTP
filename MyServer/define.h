@@ -30,7 +30,7 @@ enum TFTP_ERROR_CODE{
 
 #define MAX_BUFFER_LENGTH 10000
 
-#define _DEBUG_MODE
+//#define _DEBUG_MODE
 
 #define SERVER_PORT 69
 
