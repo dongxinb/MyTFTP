@@ -4,6 +4,7 @@
 
 ServerItem::ServerItem(SOCKET *socket, SOCKADDR_IN addr, char *message, int length)
 {
+	fileError = false;
 	blksize = 512;
 	finished = false;
 	this->socket = socket;
@@ -47,6 +48,7 @@ ServerItem::ServerItem(SOCKET *socket, SOCKADDR_IN addr, char *message, int leng
 			else {
 				sendErr(TFTP_ERR_UNDEFINED);
 			}
+			fileError = true;
 		}
 		else {
 			sendPackage(1);
@@ -68,6 +70,7 @@ ServerItem::ServerItem(SOCKET *socket, SOCKADDR_IN addr, char *message, int leng
 			else {
 				sendErr(TFTP_ERR_UNDEFINED);
 			}
+			fileError = true;
 		}
 		else {
 			sendACK(0);
@@ -210,6 +213,7 @@ int ServerItem::sendErr(TFTP_ERROR_CODE errorcode)
 	default:
 		break;
 	}
+	convert(x + 4);
 	int ret = mySend(x, strlen(x + 4) + 5);
 	if (ret == SOCKET_ERROR) {
 		cout << "sendErr() failed!" << endl;
@@ -218,4 +222,14 @@ int ServerItem::sendErr(TFTP_ERROR_CODE errorcode)
 	cout << "Err: " << inet_ntoa(addr.sin_addr) << " " <<  x + 4 << endl;
 #endif
 	return ret;
+}
+
+void ServerItem::convert(char *l)
+{
+	if (strcmp(mode, "netascii") != 0)
+		return;
+	while (*l != 0) {
+		*l = toascii(*l);
+		l++;
+	}
 }

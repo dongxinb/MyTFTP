@@ -12,17 +12,25 @@ int getFile(SOCKET socket, SOCKADDR_IN addr, char *filename);
 int putFile(SOCKET socket, SOCKADDR_IN addr, char *filename);
 int handleError(char *data, int length);
 
-int _tmain(int argc, char* argv[])
+int _tmain(int argc, _TCHAR* argv1[])
 {
 	//char *server = "127.0.0.1";
 	//char *argv[] = { "tftp", "45.116.12.104", "put", "1234.txt" };
 	//argc = 4;
+	
 
 	if (argc != 4) {
 		cout << "Argc Error! TYPE: \"TFTP.exe SERVER_IP OPTION(get, put) filename\"" << endl;
 		return 0;
 	}
-	cout << argv[2] << endl;
+	char *argv[4];
+	for (int i = 0; i < argc; i++) {
+		int iLength;
+		iLength = WideCharToMultiByte(CP_ACP, 0, argv1[i], -1, NULL, 0, NULL, NULL);
+		//½«tcharÖµ¸³¸ø_char
+		argv[i] = (char *)malloc(iLength + 1);
+		WideCharToMultiByte(CP_ACP, 0, argv1[i], -1, argv[i], iLength, NULL, NULL);
+	}
 	char *server = (char *)argv[1];
 
 	int port = 69;
@@ -143,7 +151,6 @@ int _tmain(int argc, char* argv[])
 
 	closesocket(clientSocket);
 	WSACleanup();
-	getchar();
 	return 0;
 }
 
@@ -214,6 +221,7 @@ int getFile(SOCKET socket, SOCKADDR_IN addr, char *filename)
 				break;
 			}
 			if (ret < bufferSize + 4) {
+				cout << "Get successfully!" << endl;
 				break;
 			}
 		}

@@ -50,6 +50,8 @@ int _tmain(int argc, _TCHAR* argv1[])
 		return 0;
 	}
 
+	cout << "This is my socket server!" << endl;
+
 	char *data = (char *)malloc(MAX_BUFFER_LENGTH);
 
 	struct fd_set fds;
@@ -88,7 +90,12 @@ int _tmain(int argc, _TCHAR* argv1[])
 
 							cout << "[RENew] " << inet_ntoa(cAddr.sin_addr) << " connected." << endl;
 							cserver = new ServerItem(&serverSocket, cAddr, data, ret);
-							servers.push_back(cserver);
+							if (cserver->fileError) {
+								delete(cserver);
+							}
+							else {
+								servers.push_back(cserver);
+							}
 						}
 						else if (opCode == TFTP_OP_ACK) {
 							
@@ -121,7 +128,13 @@ int _tmain(int argc, _TCHAR* argv1[])
 						if (ntohs(pac->opCode) == TFTP_OP_READ || ntohs(pac->opCode) == TFTP_OP_WRITE) {
 							cout << "[New] " << inet_ntoa(cAddr.sin_addr) << ": Connected." << endl;
 							cserver = new ServerItem(&serverSocket, cAddr, data, ret);
-							servers.push_back(cserver);
+							if (cserver->fileError) {
+								delete(cserver);
+							}
+							else {
+								servers.push_back(cserver);
+							}
+							
 						}
 					}
 				}

@@ -13,6 +13,7 @@ public:
 	int packageIndex;
 	FILE *fp;
 	BOOL finished;
+	BOOL fileError;
 	ServerItem(SOCKET *socket, SOCKADDR_IN addr, char *message, int length);
 	int sendErr(TFTP_ERROR_CODE errorcode);
 	int handleAck(unsigned short index);
@@ -22,7 +23,7 @@ public:
 private:
 	int mySend(char *message, int length);
 	int sendACK(unsigned short index);
-	
+	void convert(char *l);
 	int sendPackage(int index);
 };
 
