@@ -12,15 +12,18 @@ int getFile(SOCKET socket, SOCKADDR_IN addr, char *filename);
 int putFile(SOCKET socket, SOCKADDR_IN addr, char *filename);
 int handleError(char *data, int length);
 
-int _tmain(int argc, _TCHAR* argv1[])
+int _tmain(int argc, char* argv[])
 {
-	char *server = "127.0.0.1";
-	char *argv[] = { "tftp", "45.116.12.104", "put", "1234.txt" };
-	argc = 4;
+	//char *server = "127.0.0.1";
+	//char *argv[] = { "tftp", "45.116.12.104", "put", "1234.txt" };
+	//argc = 4;
 
 	if (argc != 4) {
 		cout << "Argc Error! TYPE: \"TFTP.exe SERVER_IP OPTION(get, put) filename\"" << endl;
+		return 0;
 	}
+	cout << argv[2] << endl;
+	char *server = (char *)argv[1];
 
 	int port = 69;
 	WORD myVersionRequest;

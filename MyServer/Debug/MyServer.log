@@ -1,0 +1,37 @@
+﻿生成启动时间为 15/6/23 下午2:10:48。
+     1>项目“Z:\GIT\MyTFTP\MyServer\MyServer.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ServerItem.cpp
+         ServerItem.cpp
+     1>z:\git\mytftp\myserver\serveritem.cpp(21): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(22): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(30): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdio.h(2254): note: 参见“sscanf”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(35): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(56): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(193): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(196): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(199): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(202): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(205): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(208): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Z:\GIT\MyTFTP\Debug\MyServer.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"Z:\GIT\MyTFTP\Debug\MyServer.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Z:\GIT\MyTFTP\Debug\MyServer.lib" /MACHINE:X86 Debug\MyServer.obj
+         Debug\ServerItem.obj
+         Debug\stdafx.obj
+         MyServer.vcxproj -> Z:\GIT\MyTFTP\Debug\MyServer.exe
+     1>已完成生成项目“Z:\GIT\MyTFTP\MyServer\MyServer.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.59

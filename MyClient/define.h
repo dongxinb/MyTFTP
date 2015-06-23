@@ -32,4 +32,6 @@ enum {
 
 #define _DEBUG_MODE
 
+#define SERVER_PORT 69
+
 #endif
