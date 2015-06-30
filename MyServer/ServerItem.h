@@ -25,5 +25,6 @@ private:
 	int sendACK(unsigned short index);
 	void convert(char *l);
 	int sendPackage(int index);
+	int logMessage(char *message);
 };
 

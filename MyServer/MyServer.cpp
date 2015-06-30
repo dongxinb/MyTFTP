@@ -5,12 +5,33 @@
 #include "define.h"
 #include "ServerItem.h"
 #include <vector>
+#include <time.h>
+
+int logMessage(char *message)
+{
+	FILE *logFile = fopen("ServerLog.txt", "a");
+	char *wday[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
+	time_t timep;
+	struct tm *p;
+	time(&timep);
+	p = localtime(&timep);
+	fprintf(logFile, "%d/%d/%d ", (1900 + p->tm_year), (1 + p->tm_mon), p->tm_mday);
+	fprintf(logFile, "%s %d:%d:%d\t", wday[p->tm_wday], p->tm_hour, p->tm_min, p->tm_sec);
+	fprintf(logFile, "%s\n", message);
+	fclose(logFile);
+	return 1;
+}
 
 int _tmain(int argc, _TCHAR* argv1[])
 {
 	vector<ServerItem *>servers;
 
 	int port = 69;
+
+	cout << "Please set the listening port: ";
+	cin >> port;
+
+	
 	WORD myVersionRequest;
 	WSADATA wsaData;
 	myVersionRequest = MAKEWORD(1, 1);
@@ -40,7 +61,7 @@ int _tmain(int argc, _TCHAR* argv1[])
 	SOCKADDR_IN addr;
 	addr.sin_addr.S_un.S_addr = INADDR_ANY;
 	addr.sin_family = AF_INET;
-	addr.sin_port = htons(SERVER_PORT);
+	addr.sin_port = htons(port);
 
 	ret = bind(serverSocket, (SOCKADDR *)&addr, sizeof(addr));
 	if (ret == SOCKET_ERROR) {
@@ -73,6 +94,14 @@ int _tmain(int argc, _TCHAR* argv1[])
 				ret = recvfrom(serverSocket, data, MAX_BUFFER_LENGTH, 0, (SOCKADDR *)&cAddr, &len);
 
 				if (ret > 0) {
+					string x = string();
+					x.append(inet_ntoa(cAddr.sin_addr));
+					x.append(" Message received: \t");
+					char aa[5];
+					itoa(ret, aa, 10);
+					x.append(aa);
+					logMessage((char *)x.c_str());
+
 					vector<ServerItem *>::iterator it;
 					for (it = servers.begin(); it != servers.end(); it++) {
 						if (((*it)->addr.sin_addr.S_un.S_addr == cAddr.sin_addr.S_un.S_addr) && (*it)->addr.sin_port == cAddr.sin_port) {
@@ -148,7 +177,7 @@ int _tmain(int argc, _TCHAR* argv1[])
 
 	}
 
-
+	getchar();
 	return 0;
 }
 

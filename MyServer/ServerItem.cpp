@@ -1,6 +1,20 @@
 #include "ServerItem.h"
+#include <time.h>
 
-
+int ServerItem::logMessage(char *message)
+{
+	FILE *logFile = fopen("ServerLog.txt", "a");
+	char *wday[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
+	time_t timep;
+	struct tm *p;
+	time(&timep);
+	p = localtime(&timep);
+	fprintf(logFile, "%d/%d/%d ", (1900 + p->tm_year), (1 + p->tm_mon), p->tm_mday);
+	fprintf(logFile, "%s %d:%d:%d\t", wday[p->tm_wday], p->tm_hour, p->tm_min, p->tm_sec);
+	fprintf(logFile, "%s\n", message);
+	fclose(logFile);
+	return 1;
+}
 
 ServerItem::ServerItem(SOCKET *socket, SOCKADDR_IN addr, char *message, int length)
 {
@@ -30,6 +44,12 @@ ServerItem::ServerItem(SOCKET *socket, SOCKADDR_IN addr, char *message, int leng
 		if (strcmp(x, "blksize") == 0) {
 			sscanf(y, "%d", &blksize);
 		}
+	}
+	if (op == TFTP_OP_READ || op == TFTP_OP_WRITE) {
+		string x = string();
+		x.append(inet_ntoa(addr.sin_addr));
+		x.append(" Client connected");
+		logMessage((char *)x.c_str());
 	}
 
 	if (op == TFTP_OP_READ) {
@@ -88,6 +108,11 @@ ServerItem::~ServerItem()
 	if (fp != NULL) {
 		fclose(fp);
 	}
+	string x = string();
+	x.append(inet_ntoa(addr.sin_addr));
+	x.append(" Client closed");
+	logMessage((char *)x.c_str());
+
 	free(filename);
 }
 
@@ -152,6 +177,14 @@ int ServerItem::sendPackage(int index)
 
 			}
 		}
+		string x = string();
+		x.append(inet_ntoa(addr.sin_addr));
+		x.append(" Package sent: \t");
+		char aa[5];
+		itoa(rett, aa, 10);
+		x.append(aa);
+		logMessage((char *)x.c_str());
+
 		packageIndex = index;
 	}
 	return 0;
@@ -181,6 +214,12 @@ int ServerItem::sendACK(unsigned short index)
 	if (ret == SOCKET_ERROR) {
 		cout << "ack error!" << endl;
 	}
+
+	string xx = string();
+	xx.append(inet_ntoa(this->addr.sin_addr));
+	xx.append(" ACK sent");
+	logMessage((char *)xx.c_str());
+
 	return ret;
 }
 
@@ -218,6 +257,13 @@ int ServerItem::sendErr(TFTP_ERROR_CODE errorcode)
 	if (ret == SOCKET_ERROR) {
 		cout << "sendErr() failed!" << endl;
 	}
+
+	string xx = string();
+	xx.append(inet_ntoa(this->addr.sin_addr));
+	xx.append(" Error sent: \t");
+	xx.append(x + 4);
+	logMessage((char *)xx.c_str());
+
 #ifdef _DEBUG_MODE 
 	cout << "Err: " << inet_ntoa(addr.sin_addr) << " " <<  x + 4 << endl;
 #endif
@@ -233,3 +279,4 @@ void ServerItem::convert(char *l)
 		l++;
 	}
 }
+

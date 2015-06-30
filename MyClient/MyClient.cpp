@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "define.h"
+#include <time.h>
 
 int bufferSize = 512;
 
@@ -11,19 +12,20 @@ int sendACK(SOCKET socket, unsigned short index, SOCKADDR_IN addr);
 int getFile(SOCKET socket, SOCKADDR_IN addr, char *filename);
 int putFile(SOCKET socket, SOCKADDR_IN addr, char *filename);
 int handleError(char *data, int length);
+int logMessage(char *message);
+FILE *logFile;
 
 int _tmain(int argc, _TCHAR* argv1[])
 {
 	//char *server = "127.0.0.1";
 	//char *argv[] = { "tftp", "45.116.12.104", "put", "1234.txt" };
 	//argc = 4;
-	
 
-	if (argc != 4) {
-		cout << "Argc Error! TYPE: \"TFTP.exe SERVER_IP OPTION(get, put) filename\"" << endl;
+	if (argc != 5) {
+		cout << "Argc Error! TYPE: \"TFTP.exe SERVER_IP PORT OPTION(get, put) filename\"" << endl;
 		return 0;
 	}
-	char *argv[4];
+	char *argv[5];
 	for (int i = 0; i < argc; i++) {
 		int iLength;
 		iLength = WideCharToMultiByte(CP_ACP, 0, argv1[i], -1, NULL, 0, NULL, NULL);
@@ -33,7 +35,7 @@ int _tmain(int argc, _TCHAR* argv1[])
 	}
 	char *server = (char *)argv[1];
 
-	int port = 69;
+	int port = atoi(argv[2]);
 	WORD myVersionRequest;
 	WSADATA wsaData;
 	myVersionRequest = MAKEWORD(1, 1);
@@ -63,7 +65,7 @@ int _tmain(int argc, _TCHAR* argv1[])
 	SOCKADDR_IN addr;
 	addr.sin_addr.S_un.S_addr = inet_addr(server);
 	addr.sin_family = AF_INET;
-	addr.sin_port = htons(69);
+	addr.sin_port = htons(port);
 
 	/*
 	int len = sizeof(addr);
@@ -71,11 +73,13 @@ int _tmain(int argc, _TCHAR* argv1[])
 	data = (char *)malloc(bufferSize + 4);
 	unsigned short index = 0;
 	*/
-	if (strcmp(argv[2], "put") == 0 || strcmp(argv[2], "PUT") == 0) {
-		ret = putFile(clientSocket, addr, argv[3]);
+	logFile = fopen("ClientLog.txt", "a");
+
+	if (strcmp(argv[3], "put") == 0 || strcmp(argv[3], "PUT") == 0) {
+		ret = putFile(clientSocket, addr, argv[4]);
 	}
-	else if (strcmp(argv[2], "get") == 0 || strcmp(argv[2], "GET") == 0) {
-		ret = getFile(clientSocket, addr, argv[3]);
+	else if (strcmp(argv[3], "get") == 0 || strcmp(argv[3], "GET") == 0) {
+		ret = getFile(clientSocket, addr, argv[4]);
 	}
 	else {
 		cout << "Unknown command!" << endl;
@@ -151,6 +155,8 @@ int _tmain(int argc, _TCHAR* argv1[])
 
 	closesocket(clientSocket);
 	WSACleanup();
+	getchar();
+	fclose(logFile);
 	return 0;
 }
 
@@ -206,6 +212,14 @@ int getFile(SOCKET socket, SOCKADDR_IN addr, char *filename)
 			cout << "recvform() failed!" << endl;
 			break;
 		}
+		string x = string();
+		x.append(inet_ntoa(addr.sin_addr));
+		x.append(" Message received: \t");
+		char aa[5];
+		itoa(ret, aa, 10);
+		x.append(aa);
+		logMessage((char *)x.c_str());
+
 		package *op = (package *)data;
 		int opCode = ntohs(op->opCode);
 #ifdef _DEBUG_MODE
@@ -290,6 +304,15 @@ int putFile(SOCKET socket, SOCKADDR_IN addr, char *filename)
 			cout << "recvform() failed!" << endl;
 			break;
 		}
+
+		string x = string();
+		x.append(inet_ntoa(addr.sin_addr));
+		x.append(" Message received: \t");
+		char aa[5];
+		itoa(ret, aa, 10);
+		x.append(aa);
+		logMessage((char *)x.c_str());
+
 		package *op = (package *)data;
 		int opCode = ntohs(op->opCode);
 #ifdef _DEBUG_MODE
@@ -333,6 +356,14 @@ int mySend(SOCKET socket, char *message, int length, SOCKADDR_IN addr)
 		cout << "sendto() failed!" << endl;
 		return SOCKET_ERROR;
 	}
+	string x = string();
+	x.append(inet_ntoa(addr.sin_addr));
+	x.append(" Message sent: \t");
+	char aa[5];
+	itoa(ret, aa, 10);
+	x.append(aa);
+	logMessage((char *)x.c_str());
+
 #ifdef _DEBUG_MODE
 	cout << "sendto(): " << ret << endl;
 #endif
@@ -357,5 +388,18 @@ int handleError(char *data, int length)
 	package *op = (package *)data;
 	unsigned short errCode = ntohs(op->code);
 	cout << "Error: " << data + 4 << endl;
+	return 1;
+}
+
+int logMessage(char *message)
+{
+	char *wday[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
+	time_t timep;
+	struct tm *p;
+	time(&timep);
+	p = localtime(&timep);
+	fprintf(logFile, "%d/%d/%d ", (1900 + p->tm_year), (1 + p->tm_mon), p->tm_mday);
+	fprintf(logFile, "%s %d:%d:%d\t", wday[p->tm_wday], p->tm_hour, p->tm_min, p->tm_sec);
+	fprintf(logFile, "%s\n", message);
 	return 1;
 }

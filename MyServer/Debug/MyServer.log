@@ -1,32 +1,44 @@
-﻿生成启动时间为 15/6/23 下午3:38:27。
+﻿生成启动时间为 15/6/30 下午1:25:02。
      1>项目“Z:\GIT\MyTFTP\MyServer\MyServer.vcxproj”在节点 2 上(Rebuild 个目标)。
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt MyServer.cpp ServerItem.cpp stdafx.cpp
          stdafx.cpp
          ServerItem.cpp
-     1>z:\git\mytftp\myserver\serveritem.cpp(22): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(6): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(11): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\time.h(505): note: 参见“localtime”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(36): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(23): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(37): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(31): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(45): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdio.h(2254): note: 参见“sscanf”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(36): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(56): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(58): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(78): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(196): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(184): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdlib.h(1318): note: 参见“itoa”的声明
+     1>z:\git\mytftp\myserver\serveritem.cpp(235): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(199): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(238): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(202): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(241): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(205): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(244): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(208): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(247): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
-     1>z:\git\mytftp\myserver\serveritem.cpp(211): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>z:\git\mytftp\myserver\serveritem.cpp(250): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\string.h(119): note: 参见“strcpy”的声明
          MyServer.cpp
+     1>z:\git\mytftp\myserver\myserver.cpp(12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+     1>z:\git\mytftp\myserver\myserver.cpp(17): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\time.h(505): note: 参见“localtime”的声明
+     1>z:\git\mytftp\myserver\myserver.cpp(101): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10056.0\ucrt\stdlib.h(1318): note: 参见“itoa”的声明
          正在生成代码...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Z:\GIT\MyTFTP\Debug\MyServer.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"Z:\GIT\MyTFTP\Debug\MyServer.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Z:\GIT\MyTFTP\Debug\MyServer.lib" /MACHINE:X86 Debug\MyServer.obj
@@ -37,4 +49,4 @@
 
 生成成功。
 
-已用时间 00:00:03.37
+已用时间 00:00:03.32
